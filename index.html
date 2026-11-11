@@ -3,151 +3,160 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080000">
-<meta name="description" content="HACKER X - Fictional Cyber Simulation">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#050000">
+<meta name="description" content="ALMOZAG HACKER X - Fictional Prank Simulation">
 <title>𝚸𝛉𝚸 𝘢ᥣḿ𝕠𝗭𝘢𝙶 𝚮𝚨Ⴚ𝚱𝛦𝛶 V𝟭</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="background-grid"></div>
 <canvas id="matrix"></canvas>
-<div class="scanlines"></div>
 
 <header class="topbar">
   <div class="brand">
-    <span class="brand-icon">X</span>
+    <div class="brand-logo">X</div>
     <div>
-      <strong>ALMOZAG HACKER X</strong>
-      <small>VERSION 1.0 / SIMULATION</small>
+      <b>ALMOZAG HACKER</b>
+      <small>PRANK SIMULATOR V2</small>
     </div>
   </div>
-  <div class="status">
-    <span class="dot"></span> SYSTEM ONLINE
-  </div>
+  <div class="online"><i></i> ONLINE</div>
 </header>
 
-<main class="container">
+<main>
 
-  <section class="hero">
-    <div class="warning">⚠ FICTIONAL CYBER SIMULATION ⚠</div>
-    <div class="logo">𝚮𝚨Ⴚ𝚱𝛦𝛶</div>
-    <h1>HACKER <span>X</span></h1>
-    <p class="subtitle">ADVANCED SYSTEM SIMULATOR</p>
-    <div class="line"></div>
+<section id="home" class="screen active">
+  <div class="hero">
+    <div class="warning-label">⚠ CINEMATIC SIMULATION ⚠</div>
+    <div class="hero-symbol">X</div>
+    <h1>HACKER<span> X</span></h1>
+    <p class="subtitle">THE DARK EXPERIENCE</p>
+    <div class="red-line"></div>
     <p class="intro">
-      مرحباً بك في نظام ALMOZAG السري.
-      استعد لتجربة محاكاة سينمائية مرعبة.
+      أنت على وشك الدخول إلى تجربة سينمائية غامضة.
+      هل أنت مستعد؟
     </p>
-  </section>
+  </div>
 
-  <section class="dashboard">
+  <div class="setup panel">
+    <div class="section-heading">◈ إعداد التجربة</div>
+    <label for="target">اسم العرض التجريبي</label>
+    <input id="target" maxlength="25"
+      placeholder="اكتب اسماً أو لقباً">
 
-    <div class="panel">
-      <div class="panel-title">
-        <span>◈ SYSTEM MONITOR</span>
-        <span class="live">LIVE</span>
-      </div>
-
-      <div class="stats">
-        <div class="stat">
-          <small>CPU</small>
-          <strong id="cpu">34%</strong>
-          <div class="bar"><i id="cpuBar"></i></div>
-        </div>
-        <div class="stat">
-          <small>MEMORY</small>
-          <strong id="memory">62%</strong>
-          <div class="bar"><i id="memoryBar"></i></div>
-        </div>
-        <div class="stat">
-          <small>NETWORK</small>
-          <strong id="network">ACTIVE</strong>
-          <div class="bar"><i style="width:85%"></i></div>
-        </div>
-      </div>
-      <small class="disclaimer">قيم افتراضية للعرض فقط وليست قياسات حقيقية.</small>
+    <div class="settings">
+      <label class="toggle">
+        <input id="soundToggle" type="checkbox">
+        <span></span>
+        <b>المؤثرات الصوتية</b>
+      </label>
+      <label class="toggle">
+        <input id="vibrationToggle" type="checkbox">
+        <span></span>
+        <b>اهتزاز الموبايل</b>
+      </label>
     </div>
 
-    <div class="panel">
-      <div class="panel-title">
-        <span>◈ OPERATION CONTROL</span>
-        <span>01</span>
-      </div>
+    <button id="startBtn" class="primary-btn">
+      <span>▶</span> ابدأ التجربة
+    </button>
+    <p class="safe-note">
+      تجربة تمثيلية للترفيه فقط — لا يوجد اختراق حقيقي.
+    </p>
+  </div>
+</section>
 
-      <div class="input-group">
-        <label for="target">SIMULATION TARGET</label>
-        <input id="target" type="text"
-        placeholder="اكتب اسماً تجريبياً..."
-        maxlength="30">
-      </div>
-
-      <button id="startBtn" class="main-btn">
-        <span>▶</span> START SIMULATION
-      </button>
-
-      <button id="resetBtn" class="secondary-btn">
-        ↻ RESET SYSTEM
-      </button>
+<section id="experience" class="screen">
+  <div class="mission-header">
+    <div>
+      <small>ACTIVE SIMULATION</small>
+      <h2>OPERATION X</h2>
     </div>
+    <div class="mission-dot">● LIVE</div>
+  </div>
 
-    <div class="panel terminal-panel">
-      <div class="panel-title">
-        <span>◈ TERMINAL CONSOLE</span>
-        <span class="terminal-status">● READY</span>
-      </div>
-      <div id="terminal" class="terminal">
-        <div class="terminal-line">ALMOZAG SYSTEM [VERSION 1.0]</div>
-        <div class="terminal-line">Initializing simulation...</div>
-        <div class="terminal-line">Waiting for user command...</div>
-        <div class="cursor">_</div>
-      </div>
+  <div class="target-card panel">
+    <small>SIMULATION LABEL</small>
+    <h2 id="targetName">GUEST</h2>
+    <span>VIRTUAL ENVIRONMENT</span>
+  </div>
+
+  <div class="big-progress panel">
+    <div class="progress-top">
+      <span id="phaseName">INITIALIZATION</span>
+      <b id="percentage">00%</b>
     </div>
-
-    <div class="panel progress-panel">
-      <div class="panel-title">
-        <span>◈ OPERATION PROGRESS</span>
-        <strong id="percent">0%</strong>
-      </div>
-      <div class="progress">
-        <div id="progressFill"></div>
-      </div>
-      <div class="steps">
-        <div id="step1">01. INITIALIZATION</div>
-        <div id="step2">02. SYSTEM ANALYSIS</div>
-        <div id="step3">03. NETWORK SIMULATION</div>
-        <div id="step4">04. FINAL REPORT</div>
-      </div>
+    <div class="progress-track">
+      <div id="progressFill"></div>
     </div>
-
-  </section>
-
-  <section id="result" class="result hidden">
-    <div class="result-icon">⚠</div>
-    <h2>SIMULATION COMPLETED</h2>
-    <p id="resultText">اكتملت المحاكاة بنجاح.</p>
-    <div class="result-box">
-      <strong>ALMOZAG HACKER X</strong>
-      <p>كل الأحداث والنتائج السابقة كانت تمثيلية.</p>
-      <p>لم يتم اختراق أي جهاز أو الوصول إلى أي بيانات.</p>
+    <div class="phase-list">
+      <div id="phase1">01 <span>تهيئة النظام</span><b>WAITING</b></div>
+      <div id="phase2">02 <span>تحليل افتراضي</span><b>WAITING</b></div>
+      <div id="phase3">03 <span>محاكاة الشبكة</span><b>WAITING</b></div>
+      <div id="phase4">04 <span>التقرير النهائي</span><b>WAITING</b></div>
     </div>
-    <button id="revealBtn" class="main-btn">كشف المقلب 😂</button>
-  </section>
+  </div>
 
-  <section id="prank" class="prank hidden">
-    <div class="prank-symbol">😂</div>
-    <h2>اتمسكت يا أسطورة!</h2>
-    <p>مبروك! أنت ضحية مقلب ALMOZAG HACKER X V1.</p>
-    <p class="prank-note">مفيش اختراق حصل. دي مجرد محاكاة للضحك والترفيه ❤️</p>
-    <button id="againBtn" class="main-btn">إعادة المقلب</button>
-  </section>
+  <div class="terminal-card panel">
+    <div class="terminal-head">
+      <span>● TERMINAL</span>
+      <span>SESSION ACTIVE</span>
+    </div>
+    <div id="terminal" class="terminal">
+      <div class="terminal-line">ALMOZAG V2 SYSTEM</div>
+      <div class="terminal-line">Waiting for simulation...</div>
+    </div>
+  </div>
+
+  <div id="alertBox" class="alert-box hidden">
+    <div class="alert-icon">⚠</div>
+    <b id="alertTitle">SYSTEM ALERT</b>
+    <p id="alertMessage">SIMULATED ALERT</p>
+  </div>
+
+  <p class="simulation-note">
+    جميع العمليات المعروضة افتراضية ولا تتصل بأجهزة أو شبكات خارجية.
+  </p>
+</section>
+
+<section id="reveal" class="screen reveal-screen">
+  <div class="glitch-title" data-text="SYSTEM ALERT">
+    SYSTEM ALERT
+  </div>
+
+  <div class="skull">☠</div>
+
+  <div class="final-warning">
+    <small>OPERATION RESULT</small>
+    <h1>GOTCHA!</h1>
+    <h2>😂 اتعمل فيك مقلب!</h2>
+    <p id="finalName">يا أسطورة!</p>
+  </div>
+
+  <div class="reveal-card panel">
+    <h3>🎭 الحقيقة ظهرت!</h3>
+    <p>
+      كل اللي شوفته كان مؤثرات ومحاكاة تمثيلية.
+      مفيش اختراق حصل، ومفيش بيانات اتجمعت،
+      وجهازك في أمان.
+    </p>
+  </div>
+
+  <button id="againBtn" class="primary-btn">
+    ↻ جرب المقلب مرة تانية
+  </button>
+  <button id="homeBtn" class="outline-btn">
+    العودة للرئيسية
+  </button>
+</section>
 
 </main>
 
 <footer>
-  <div>𝚸𝛉𝚸 𝘢ᥣḿ𝕠𝗭𝘢𝙶 𝚮𝚨Ⴚ𝚱𝛦𝛶 V𝟭</div>
-  <small>FICTIONAL SIMULATION • NO REAL HACKING</small>
-  <button id="soundBtn" class="sound-btn">🔊 تشغيل الصوت</button>
+  <b>𝚸𝛉𝚸 𝘢ᥣḿ𝕠𝗭𝘢𝙶 𝚮𝚨Ⴚ𝚱𝛦𝛶 V𝟭</b>
+  <small>FICTIONAL ENTERTAINMENT EXPERIENCE</small>
 </footer>
 
 <script src="script.js"></script>
