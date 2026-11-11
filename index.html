@@ -78,14 +78,14 @@ _</div>
 
 <div class="footer">PӨP almөZaG HAGKEY V1</div>
 <div class="small">FICTIONAL SIMULATION • NO REAL HACKING</div>
-<button class="sound" id="soundBtn">🔊 تشغيل صوت الاختراق - ميكس 8</button>
+<button class="sound" id="soundBtn">🚨 تشغيل صوت الانذار</button>
 
 <script>
 let running=false,interval;
 let term=document.getElementById('term'),prog=document.getElementById('prog'),pct=document.getElementById('pct');
 function log(t){term.textContent+="\n"+t;term.scrollTop=9999;}
 
-// ===== صوت رقم 8 - الميكس كله =====
+// ===== صوت رقم 2 - الانذار بس =====
 let audioCtx;
 function getCtx(){
   if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -98,42 +98,31 @@ function beep(freq, time, dur, type, vol){
     let o = ctx.createOscillator();
     let g = ctx.createGain();
     o.connect(g); g.connect(ctx.destination);
-    o.type = type || 'square';
+    o.type = type || 'sawtooth';
     o.frequency.value = freq;
-    g.gain.setValueAtTime(vol || 0.15, ctx.currentTime + time);
+    g.gain.setValueAtTime(vol || 0.2, ctx.currentTime + time);
     g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + time + dur);
     o.start(ctx.currentTime + time);
     o.stop(ctx.currentTime + time + dur);
   }catch(e){}
 }
-function playSound8(){
-  // 1 - كيبورد سريع
-  for(let i=0;i<15;i++){ beep(800 + Math.random()*1200, i*0.08, 0.05, 'square', 0.08); }
-  // 2 - بيب بيب اجهزة
-  beep(1200, 1.2, 0.1, 'square', 0.12);
-  beep(1200, 1.4, 0.1, 'square', 0.12);
-  beep(900, 1.6, 0.15, 'square', 0.12);
-  // 3 - انذار
-  beep(300, 1.9, 0.3, 'sawtooth', 0.18);
-  beep(600, 2.2, 0.3, 'sawtooth', 0.18);
-  beep(300, 2.5, 0.3, 'sawtooth', 0.18);
-  beep(900, 2.8, 0.5, 'sawtooth', 0.22);
-  // 4 - جليتش تكسير
-  for(let i=0;i<8;i++){ beep(200 + Math.random()*800, 3.4 + i*0.07, 0.06, 'sawtooth', 0.14); }
-  // 5 - رعب واطي
-  beep(80, 4.1, 0.8, 'sine', 0.25);
-  beep(65, 4.9, 0.8, 'sine', 0.25);
-  // 6 - نجاح الاختراق
-  beep(500, 5.8, 0.15, 'square', 0.15);
-  beep(700, 5.95, 0.15, 'square', 0.15);
-  beep(1000, 6.1, 0.5, 'square', 0.22);
-  log("> SOUND 8 - FULL MIX PLAYING... [FAKE]");
+function playSound2(){
+  // انذار واو واو - 4 مرات ورا بعض
+  beep(300, 0, 0.35, 'sawtooth', 0.22);
+  beep(650, 0.35, 0.35, 'sawtooth', 0.22);
+  beep(300, 0.7, 0.35, 'sawtooth', 0.22);
+  beep(650, 1.05, 0.35, 'sawtooth', 0.22);
+  beep(300, 1.4, 0.35, 'sawtooth', 0.22);
+  beep(650, 1.75, 0.35, 'sawtooth', 0.22);
+  beep(300, 2.1, 0.35, 'sawtooth', 0.22);
+  beep(900, 2.45, 0.6, 'sawtooth', 0.25);
+  log("> ALARM SOUND PLAYING... [FAKE]");
 }
 
-document.getElementById('soundBtn').onclick=function(){ playSound8(); };
+document.getElementById('soundBtn').onclick=function(){ playSound2(); };
 
 document.getElementById('startBtn').onclick=function(){
-  playSound8();
+  playSound2();
   if(running) return;
   let n=document.getElementById('target').value||"البوب";
   running=true;
@@ -143,7 +132,7 @@ document.getElementById('startBtn').onclick=function(){
   clearInterval(interval);
   interval=setInterval(function(){
     p+=2;
-    if(p>=100){p=100;clearInterval(interval);running=false;log("> SIMULATION COMPLETE ✔");log("> Report: FAKE - FOR FUN ONLY"); beep(1000,0,0.5,'square',0.2); beep(1300,0.2,0.5,'square',0.2);}
+    if(p>=100){p=100;clearInterval(interval);running=false;log("> SIMULATION COMPLETE ✔");log("> Report: FAKE - FOR FUN ONLY");}
     prog.style.width=p+"%";
     pct.textContent=p+"%";
     let c=20+Math.floor(Math.random()*70),m=40+Math.floor(Math.random()*50);
@@ -155,9 +144,9 @@ document.getElementById('startBtn').onclick=function(){
     if(p>35)document.getElementById('s2').classList.add('on');
     if(p>60)document.getElementById('s3').classList.add('on');
     if(p>85)document.getElementById('s4').classList.add('on');
-    if(p==20){log("> Bypassing firewall... [FAKE]"); beep(400,0,0.2,'sawtooth',0.15);}
-    if(p==50){log("> Analyzing system... [FAKE]"); beep(500,0,0.2,'sawtooth',0.15);}
-    if(p==80){log("> Generating final report..."); beep(700,0,0.3,'square',0.15);}
+    if(p==20)log("> Bypassing firewall... [FAKE]");
+    if(p==50)log("> Analyzing system... [FAKE]");
+    if(p==80)log("> Generating final report...");
   },80);
 };
 
@@ -167,7 +156,6 @@ document.getElementById('resetBtn').onclick=function(){
   term.textContent="ALMOZAG SYSTEM [VERSION 1.0]\nInitializing simulation...\nWaiting for user command...\n_";
   document.querySelectorAll('.step').forEach(e=>e.classList.remove('on'));
   document.getElementById('target').value="";
-  beep(200,0,0.3,'sawtooth',0.15); beep(150,0.3,0.4,'sawtooth',0.15);
 };
 </script>
 </body>
