@@ -1,29 +1,82 @@
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0a0000;color:#fff;margin:0;padding:15px}
-.top{border:1px solid #ff2222;text-align:center;padding:6px;color:#ff5555;font-size:13px;letter-spacing:2px}
-h1{text-align:center;font-size:55px;margin:15px 0 0;line-height:1;text-shadow:0 0 20px red;font-weight:900}
-h2{text-align:center;letter-spacing:8px;font-size:30px;margin:5px 0}
-h2 b{color:red}
-.sub{text-align:center;color:#ff6b6b;letter-spacing:4px;font-size:13px}
-.desc{text-align:center;color:#ccc;margin:15px 0;font-size:14px;line-height:1.8}
-.card{background:#1a0505;border:1px solid #551111;border-radius:15px;padding:15px;margin-top:15px}
-.card-head{display:flex;justify-content:space-between;color:#ff4444;font-weight:bold}
-.live{color:#00ff00}
-.monitor{display:flex;gap:10px;margin-top:15px}
-.box{flex:1;background:#120000;border:1px solid #441111;border-radius:10px;padding:10px;text-align:center}
-.box small{color:#aaa}
-.box b{font-size:20px;display:block;margin:5px 0}
-.bar{height:6px;background:#330000;border-radius:10px;overflow:hidden}
-.bar i{display:block;height:100%;background:red}
-.label{text-align:left}
-input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:14px;border-radius:10px;font-size:18px;text-align:left;outline:none}
-.btn{background:linear-gradient(#ff2222,#990000);border:none;color:#fff;width:100%;padding:16px;border-radius:10px;font-size:19px;font-weight:900;margin-top:12px;cursor:pointer}
-.btn2{background:transparent;border:1px solid #661111;color:#ff7777;width:100%;padding:14px;border-radius:10px;margin-top:10px;font-size:16px;cursor:pointer}
-.terminal{background:#000;border:1px solid #330000;padding:12px;color:#ff5555;min-height:160px;font-family:monospace;text-align:left;direction:ltr;white-space:pre-wrap;line-height:1.7;font-size:13px;margin-top:12px}
-.progress{height:10px;background:#330000;border-radius:10px;overflow:hidden;margin:15px 0}
-.progress i{display:block;height:100%;background:red;width:0%;transition:.3s}
-.step{color:#888;margin:7px 0;font-family:monospace}
-.step.on{color:#ff4444;font-weight:bold}
-.footer{text-align:center;color:#ff4444;font-weight:bold;margin:20px 0 5px}
-.small{text-align:center;color:#888;font-size:12px}
-.sound{background:#2a0808;border:1px solid #661111;color:#fff;padding:12px 20px;border-radius:8px;margin:15px auto;display:block;cursor:pointer}
+let running = false;
+let interval;
+
+let term = document.getElementById('term');
+let prog = document.getElementById('prog');
+let pct = document.getElementById('pct');
+let cpuEl = document.getElementById('cpu');
+let memEl = document.getElementById('mem');
+let cpuBar = document.getElementById('cpuBar');
+let memBar = document.getElementById('memBar');
+
+function log(t){
+  term.textContent += "\n" + t;
+  term.scrollTop = 9999;
+}
+
+document.getElementById('soundBtn').addEventListener('click', function(){
+  try{
+    let ctx = new (window.AudioContext || window.webkitAudioContext)();
+    let o = ctx.createOscillator();
+    let g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.value = 440;
+    o.start();
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+  }catch(e){}
+  log("> SOUND ENABLED...");
+  alert("الصوت اشتغل");
+});
+
+document.getElementById('startBtn').addEventListener('click', function(){
+  if(running) return;
+  let name = document.getElementById('target').value || "البوب";
+  running = true;
+  let p = 0;
+  term.textContent = "ALMOZAG SYSTEM [VERSION 1.0]\n> Target: " + name + "\n> Starting simulation...";
+  log("> Connecting to " + name + "...");
+  clearInterval(interval);
+  interval = setInterval(function(){
+    p += 2;
+    if(p >= 100){
+      p = 100;
+      clearInterval(interval);
+      running = false;
+      log("> SIMULATION COMPLETE ✔");
+      log("> Report: FAKE - FOR FUN ONLY");
+    }
+    prog.style.width = p + "%";
+    pct.textContent = p + "%";
+    let c = 20 + Math.floor(Math.random()*70);
+    let m = 40 + Math.floor(Math.random()*50);
+    cpuEl.textContent = c + "%";
+    memEl.textContent = m + "%";
+    cpuBar.style.width = c + "%";
+    memBar.style.width = m + "%";
+    if(p > 10) document.getElementById('s1').classList.add('on');
+    if(p > 35) document.getElementById('s2').classList.add('on');
+    if(p > 60) document.getElementById('s3').classList.add('on');
+    if(p > 85) document.getElementById('s4').classList.add('on');
+    if(p == 20) log("> Bypassing firewall... [FAKE]");
+    if(p == 50) log("> Analyzing system... [FAKE]");
+    if(p == 80) log("> Generating final report...");
+  }, 80);
+});
+
+document.getElementById('resetBtn').addEventListener('click', function(){
+  clearInterval(interval);
+  running = false;
+  prog.style.width = "0%";
+  pct.textContent = "0%";
+  term.textContent = "ALMOZAG SYSTEM [VERSION 1.0]\nInitializing simulation...\nWaiting for user command...\n_";
+  document.querySelectorAll('.step').forEach(function(e){ e.classList.remove('on'); });
+  document.getElementById('target').value = "";
+});
+
+setInterval(function(){
+  if(!running){
+    let c = 20 + Math.floor(Math.random()*20);
+    cpuEl.textContent = c + "%";
+    cpuBar.style.width = c + "%";
+  }
+}, 1000);
