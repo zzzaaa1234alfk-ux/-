@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAGKEY HACKER X - SCP SITE 81</title>
+<title>HAGKEY HACKER X</title>
 <style>
 *{box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#0a0000;color:#fff;margin:0;padding:15px}
-.top{border:1px solid #ff2222;text-align:center;padding:8px;color:#ff5555;font-size:13px;font-weight:bold;animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.top{border:1px solid #ff2222;text-align:center;padding:8px;color:#ff5555;font-size:13px;font-weight:bold}
 h1{text-align:center;font-size:55px;margin:15px 0 0;text-shadow:0 0 20px red;font-weight:900}
 h2{text-align:center;letter-spacing:8px;font-size:30px;margin:5px 0}
 h2 b{color:red}
 .sub{text-align:center;color:#ff6b6b;letter-spacing:4px;font-size:13px}
-.desc{text-align:center;color:#ccc;margin:15px 0;font-size:14px;line-height:1.8}
+.desc{text-align:center;color:#ccc;margin:15px 0;font-size:14px}
 .card{background:#1a0505;border:1px solid #551111;border-radius:15px;padding:15px;margin-top:15px}
 .card-head{display:flex;justify-content:space-between;color:#ff4444;font-weight:bold}
 .monitor{display:flex;gap:10px;margin-top:15px}
@@ -23,19 +22,19 @@ h2 b{color:red}
 .bar{height:6px;background:#330000;border-radius:10px;overflow:hidden}
 .bar i{display:block;height:100%;background:red}
 input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:14px;border-radius:10px;font-size:18px;text-align:left;outline:none}
-.btn{background:linear-gradient(#ff2222,#990000);border:none;color:#fff;width:100%;padding:16px;border-radius:10px;font-size:19px;font-weight:900;margin-top:12px;cursor:pointer}
+.btn{background:#ff2222;border:none;color:#fff;width:100%;padding:16px;border-radius:10px;font-size:19px;font-weight:900;margin-top:12px;cursor:pointer}
 .btn2{background:transparent;border:1px solid #661111;color:#ff7777;width:100%;padding:14px;border-radius:10px;margin-top:10px;font-size:16px;cursor:pointer}
-.terminal{background:#000;border:1px solid #330000;padding:12px;color:#ff5555;min-height:180px;font-family:monospace;text-align:left;direction:ltr;white-space:pre-wrap;line-height:1.8;font-size:13px;margin-top:12px;overflow:auto}
+.terminal{background:#000;border:1px solid #330000;padding:12px;color:#ff5555;min-height:180px;font-family:monospace;text-align:left;direction:ltr;white-space:pre-wrap;line-height:1.8;font-size:13px;margin-top:12px}
 .progress{height:10px;background:#330000;border-radius:10px;overflow:hidden;margin:15px 0}
-.progress i{display:block;height:100%;background:red;width:0%;transition:.3s}
+.progress i{display:block;height:100%;background:red;width:0%}
 .step{color:#888;margin:7px 0;font-family:monospace}
 .step.on{color:#ff4444;font-weight:bold}
 .footer{text-align:center;color:#ff4444;font-weight:bold;margin:20px 0 5px}
 .small{text-align:center;color:#888;font-size:12px}
 .sound{background:#2a0808;border:1px solid #661111;color:#fff;padding:12px 20px;border-radius:8px;margin:15px auto;display:block;cursor:pointer;font-size:16px}
-.threat{font-size:32px;text-align:center;font-weight:900;color:red;text-shadow:0 0 15px red;margin:10px 0}
+.threat{font-size:32px;text-align:center;font-weight:900;color:red;margin:10px 0}
 .threat-bar{height:14px;background:#330000;border-radius:10px;overflow:hidden}
-.threat-bar i{display:block;height:100%;background:linear-gradient(90deg,#ff0,#f60,#f00);width:10%;transition:.4s}
+.threat-bar i{display:block;height:100%;background:red;width:10%}
 .cams{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .cam{background:#000;border:1px solid #441111;border-radius:10px;padding:10px;text-align:center}
 .cam b{color:#ff5555;font-size:12px}
@@ -45,10 +44,10 @@ input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:
 .file b{color:#ff7777}
 .map{height:170px;background:#000;border:1px solid #441111;border-radius:10px;position:relative;margin-top:12px;overflow:hidden}
 .room{position:absolute;border:1px solid #661111;color:#888;font-size:10px;padding:6px;background:#120000}
-.dot{position:absolute;width:14px;height:14px;background:red;border-radius:50%;box-shadow:0 0 12px red;left:30px;top:30px}
+.dot{position:absolute;width:14px;height:14px;background:red;border-radius:50%;left:30px;top:30px}
 .pass-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .pass{background:#120000;border:1px solid #441111;border-radius:10px;padding:12px;text-align:center}
-.pass b{font-size:17px;color:#ff5555;display:block;margin-top:5px;word-break:break-all}
+.pass b{font-size:17px;color:#ff5555;display:block;margin-top:5px}
 .count{font-size:42px;text-align:center;font-weight:900;color:red;margin:10px 0}
 .log-row{display:flex;justify-content:space-between;border-bottom:1px solid #331111;padding:8px 0;font-size:13px;color:#ccc}
 .log-row b{color:#ff7777}
@@ -81,15 +80,14 @@ input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:
 <div class="box"><small>MEMORY</small><b id="mem">62%</b><div class="bar"><i id="memBar" style="width:62%"></i></div></div>
 <div class="box"><small>NETWORK</small><b>ACTIVE</b><div class="bar"><i style="width:90%"></i></div></div>
 </div>
-<p class="small">قيم اختراقيه حقيقيه وهو قياسات حقيقية.</p>
 </div>
 
 <div class="card">
 <div class="card-head"><span>OPERATION CONTROL</span><span>01</span></div>
 <p>SIMULATION TARGET</p>
-<input id="target" placeholder="رقم الضحيه>
-<button class="btn" id="startBtn">START SIMULATION ▶</button>
-<button class="btn2" id="resetBtn">RESET SYSTEM ↻</button>
+<input id="target" placeholder="البوب">
+<button class="btn" id="startBtn" type="button">START SIMULATION ▶</button>
+<button class="btn2" id="resetBtn" type="button">RESET SYSTEM ↻</button>
 </div>
 
 <div class="card">
@@ -111,23 +109,19 @@ input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:
 <div class="room" style="bottom:10px;right:10px">EXIT</div>
 <div class="dot" id="dot"></div>
 </div>
-<p class="small">النقطة الحمرا هي مكان المخترق - بتتحرك مع الاختراق</p>
 </div>
 
 <div class="card">
 <div class="card-head"><span>TERMINAL CONSOLE</span><span>READY ●</span></div>
-<div class="terminal" id="term">SCP SITE 81 SYSTEM [VERSION 1.0]
-Initializing simulation...
-Waiting for user command...
-_</div>
+<div class="terminal" id="term">LOADING...</div>
 </div>
 
 <div class="card">
 <div class="card-head"><span>📁 CLASSIFIED SCP FILES</span><span>TOP SECRET</span></div>
-<div class="file" data-scp="SCP-173"><span><b>SCP-173</b> - التمثال</span><span>▶</span></div>
-<div class="file" data-scp="SCP-096"><span><b>SCP-096</b> - الرجل الخجول</span><span>▶</span></div>
-<div class="file" data-scp="SCP-049"><span><b>SCP-049</b> - دكتور الطاعون</span><span>▶</span></div>
-<div class="file" data-scp="SCP-682"><span><b>SCP-682</b> - الزاحف الصعب القتل</span><span>▶</span></div>
+<button class="file" type="button" onclick="openFile('SCP-173')"><span><b>SCP-173</b> - التمثال</span><span>▶</span></button>
+<button class="file" type="button" onclick="openFile('SCP-096')" style="width:100%"><span><b>SCP-096</b> - الرجل الخجول</span><span>▶</span></button>
+<button class="file" type="button" onclick="openFile('SCP-049')" style="width:100%"><span><b>SCP-049</b> - دكتور الطاعون</span><span>▶</span></button>
+<button class="file" type="button" onclick="openFile('SCP-682')" style="width:100%"><span><b>SCP-682</b> - الزاحف</span><span>▶</span></button>
 <div class="terminal" id="fileBox" style="min-height:70px;margin-top:12px">دوس على اي ملف عشان تشوف تقريره...</div>
 </div>
 
@@ -156,197 +150,145 @@ _</div>
 <div class="log-row"><span><b>HAGKEY</b> - البوب</span><span>الان - SUCCESS</span></div>
 <div class="log-row"><span><b>GHOST</b> - SITE 19</span><span>منذ ساعة - SUCCESS</span></div>
 <div class="log-row"><span><b>ANON</b> - SITE 81</span><span>امس - FAILED</span></div>
-<div class="log-row"><span><b>X-99</b> - SITE 12</span><span>امس - SUCCESS</span></div>
 </div>
 
 <div class="footer">SCP SITE 81 - HAGKEY V1</div>
 <div class="small">FICTIONAL SIMULATION • NO REAL HACKING</div>
-<button class="sound" id="soundBtn">🚨 تشغيل صوت انذار SCP - طويل</button>
+<button class="sound" id="soundBtn" type="button">🚨 تشغيل صوت انذار SCP - طويل</button>
+<button class="sound" id="testBtn" type="button" style="background:#003300">✅ اضغط هنا للتجربة - TEST</button>
 
 <script>
-var running = false;
-var interval = null;
-var countInterval = null;
-var term = document.getElementById('term');
-var prog = document.getElementById('prog');
-var pct = document.getElementById('pct');
+// لازم الكود ده يشتغل اول ما الصفحة تفتح
+window.onload = function(){
+  var term = document.getElementById('term');
+  term.textContent = "SCP SITE 81 SYSTEM\nJS IS WORKING - الكود شغال تمام\nWaiting for START...";
+  
+  // ملفات SCP
+  window.openFile = function(id){
+    var box = document.getElementById('fileBox');
+    if(id === 'SCP-173'){ box.textContent = "> SCP-173 - التمثال\n> خطر: EUCLID\n> لا تنظر بعيدا عنه... هو بيتحرك لما تغمض عينك."; }
+    if(id === 'SCP-096'){ box.textContent = "> SCP-096 - الرجل الخجول\n> خطر: EUCLID\n> اوعى تشوف وشه... لو شوفته هيجري وراك."; }
+    if(id === 'SCP-049'){ box.textContent = "> SCP-049 - دكتور الطاعون\n> خطر: EUCLID\n> بيقول انه بيعالج الطاعون... بس علاجه انه يقتلك."; }
+    if(id === 'SCP-682'){ box.textContent = "> SCP-682 - الزاحف\n> خطر: KETER\n> صعب القتل جدا..."; }
+    alert("فتحت ملف " + id);
+  };
 
-function log(t){
-  term.textContent = term.textContent + "\n" + t;
-  term.scrollTop = 9999;
-}
+  // زرار التجربة
+  document.getElementById('testBtn').onclick = function(){
+    alert("الزرار شغال! الجافاسكربت شغالة تمام");
+    term.textContent = term.textContent + "\nTEST OK - الزرار شغال";
+  };
 
-function openFile(id){
-  var data = {};
-  data['SCP-173'] = "> SCP-173 - التمثال\n> خطر: EUCLID\n> لا تنظر بعيدا عنه... هو بيتحرك لما تغمض عينك.";
-  data['SCP-096'] = "> SCP-096 - الرجل الخجول\n> خطر: EUCLID\n> اوعى تشوف وشه... لو شوفته هيجري وراك مهما كنت فين.";
-  data['SCP-049'] = "> SCP-049 - دكتور الطاعون\n> خطر: EUCLID\n> بيقول انه بيعالج الطاعون... بس علاجه انه يقتلك.";
-  data['SCP-682'] = "> SCP-682 - الزاحف\n> خطر: KETER\n> صعب القتل جدا... حاولوا يقتلوه بكل الطرق وفشلوا.";
-  document.getElementById('fileBox').textContent = data[id];
-}
+  // الصوت
+  var audioCtx = null;
+  function getCtx(){
+    if(!audioCtx){ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+    if(audioCtx.state === 'suspended'){ audioCtx.resume(); }
+    return audioCtx;
+  }
+  function playSound(){
+    try{
+      var ctx = getCtx();
+      for(var i=0;i<10;i++){
+        var o = ctx.createOscillator(); var g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.type = 'sawtooth';
+        var t = ctx.currentTime + i*2.2;
+        o.frequency.setValueAtTime(220, t);
+        o.frequency.linearRampToValueAtTime(440, t+1);
+        o.frequency.linearRampToValueAtTime(220, t+2.1);
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.18, t+0.3);
+        g.gain.exponentialRampToValueAtTime(0.0001, t+2.1);
+        o.start(t); o.stop(t+2.1);
+      }
+      term.textContent = term.textContent + "\n> ALARM PLAYING...";
+    }catch(e){ alert("الصوت مش شغال في المتصفح ده: " + e); }
+  }
+  document.getElementById('soundBtn').onclick = function(){ playSound(); };
 
-var files = document.querySelectorAll('.file');
-for(var i=0;i<files.length;i++){
-  files[i].addEventListener('click', function(){
-    openFile(this.getAttribute('data-scp'));
-  });
-}
+  // START
+  var running = false;
+  var interval = null;
+  var countInterval = null;
+  document.getElementById('startBtn').onclick = function(){
+    playSound();
+    if(running){ return; }
+    running = true;
+    var n = document.getElementById('target').value || "البوب";
+    var p = 0;
+    var sec = 300;
+    clearInterval(countInterval);
+    countInterval = setInterval(function(){
+      sec--;
+      var m = Math.floor(sec/60);
+      var s = sec % 60;
+      var sTxt = s < 10 ? "0"+s : ""+s;
+      document.getElementById('countdown').textContent = "0"+m+":"+sTxt;
+      if(sec <= 0){ clearInterval(countInterval); }
+    }, 1000);
+    term.textContent = "SCP SITE 81 SYSTEM\n> Target: " + n + "\n> Starting...";
+    clearInterval(interval);
+    interval = setInterval(function(){
+      p = p + 1;
+      if(p >= 100){
+        p = 100; clearInterval(interval); running = false;
+        term.textContent = term.textContent + "\n> SIMULATION COMPLETE";
+        document.getElementById('p1').textContent = "HAGKEY-8812";
+        document.getElementById('p2').textContent = "SCP-81-LOCK";
+        document.getElementById('p3').textContent = "VAULT-096";
+        document.getElementById('p4').textContent = "ADMIN-2026";
+        document.getElementById('passTxt').textContent = "HACKED";
+      }
+      document.getElementById('prog').style.width = p + "%";
+      document.getElementById('pct').textContent = p + "%";
+      document.getElementById('threatBar').style.width = (10 + p*0.9) + "%";
+      if(p < 30){ document.getElementById('threatBig').textContent = "SAFE"; document.getElementById('threatTxt').textContent = "LEVEL 1 - SAFE"; }
+      else if(p < 60){ document.getElementById('threatBig').textContent = "WARNING"; document.getElementById('threatTxt').textContent = "LEVEL 3 - EUCLID"; }
+      else if(p < 90){ document.getElementById('threatBig').textContent = "DANGER"; document.getElementById('threatTxt').textContent = "LEVEL 4 - DANGER"; }
+      else { document.getElementById('threatBig').textContent = "KETER"; document.getElementById('threatTxt').textContent = "LEVEL 5 - KETER"; }
+      var dot = document.getElementById('dot');
+      dot.style.left = (30 + p*1.2) + "px";
+      dot.style.top = (30 + p*0.5) + "px";
+      var c = 20 + Math.floor(Math.random()*70);
+      var m2 = 40 + Math.floor(Math.random()*50);
+      document.getElementById('cpu').textContent = c + "%";
+      document.getElementById('mem').textContent = m2 + "%";
+      document.getElementById('cpuBar').style.width = c + "%";
+      document.getElementById('memBar').style.width = m2 + "%";
+      if(p > 5){ document.getElementById('s1').classList.add('on'); }
+      if(p > 30){ document.getElementById('s2').classList.add('on'); }
+      if(p > 60){ document.getElementById('s3').classList.add('on'); }
+      if(p > 85){ document.getElementById('s4').classList.add('on'); }
+      if(p === 10){ term.textContent = term.textContent + "\n> Bypassing firewall... [FAKE]"; }
+      if(p === 50){ term.textContent = term.textContent + "\n> Analyzing system... [FAKE]"; }
+      if(p === 85){ term.textContent = term.textContent + "\n> Generating report..."; }
+    }, 220);
+  };
 
-var audioCtx = null;
-function getCtx(){
-  if(!audioCtx){ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-  if(audioCtx.state === 'suspended'){ audioCtx.resume(); }
-  return audioCtx;
-}
-function scpSiren(startTime, duration){
-  try{
-    var ctx = getCtx();
-    var o = ctx.createOscillator(); var g = ctx.createGain();
-    var o2 = ctx.createOscillator(); var g2 = ctx.createGain();
-    o.connect(g); g.connect(ctx.destination);
-    o2.connect(g2); g2.connect(ctx.destination);
-    o.type = 'sawtooth'; o2.type = 'sawtooth';
-    o.frequency.setValueAtTime(220, ctx.currentTime + startTime);
-    o.frequency.linearRampToValueAtTime(440, ctx.currentTime + startTime + duration/2);
-    o.frequency.linearRampToValueAtTime(220, ctx.currentTime + startTime + duration);
-    o2.frequency.setValueAtTime(225, ctx.currentTime + startTime);
-    o2.frequency.linearRampToValueAtTime(445, ctx.currentTime + startTime + duration/2);
-    o2.frequency.linearRampToValueAtTime(225, ctx.currentTime + startTime + duration);
-    g.gain.setValueAtTime(0.0001, ctx.currentTime + startTime);
-    g.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + startTime + 0.3);
-    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + startTime + duration);
-    g2.gain.setValueAtTime(0.0001, ctx.currentTime + startTime);
-    g2.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + startTime + 0.3);
-    g2.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + startTime + duration);
-    o.start(ctx.currentTime + startTime); o.stop(ctx.currentTime + startTime + duration);
-    o2.start(ctx.currentTime + startTime); o2.stop(ctx.currentTime + startTime + duration);
-  }catch(e){}
-}
-function lowDrone(startTime, dur){
-  try{
-    var ctx = getCtx();
-    var o = ctx.createOscillator(); var g = ctx.createGain();
-    o.connect(g); g.connect(ctx.destination);
-    o.type = 'sine'; o.frequency.value = 55;
-    g.gain.setValueAtTime(0.0001, ctx.currentTime + startTime);
-    g.gain.exponentialRampToValueAtTime(0.22, ctx.currentTime + startTime + 0.5);
-    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + startTime + dur);
-    o.start(ctx.currentTime + startTime); o.stop(ctx.currentTime + startTime + dur);
-  }catch(e){}
-}
-function playSCPSound(){
-  lowDrone(0, 22);
-  for(var k=0;k<10;k++){ scpSiren(k*2.2, 2.1); }
-  log("> SCP SITE 81 ALARM ACTIVATED... [FAKE]");
-  log("> CONTAINMENT BREACH DETECTED...");
-}
-
-document.getElementById('soundBtn').addEventListener('click', function(){ playSCPSound(); });
-
-document.getElementById('startBtn').addEventListener('click', function(){
-  playSCPSound();
-  if(running){ return; }
-  var n = document.getElementById('target').value || "البوب";
-  running = true;
-  var p = 0;
-  var sec = 300;
-  clearInterval(countInterval);
-  countInterval = setInterval(function(){
-    sec--;
-    var m = Math.floor(sec/60);
-    var s = sec % 60;
-    var sTxt = s < 10 ? "0"+s : ""+s;
-    document.getElementById('countdown').textContent = "0"+m+":"+sTxt;
-    if(sec <= 0){ clearInterval(countInterval); }
-  }, 1000);
-  term.textContent = "SCP SITE 81 SYSTEM\n> Target: " + n + "\n> Starting simulation...";
-  log("> ALARM: CONTAINMENT BREACH...");
-  clearInterval(interval);
-  interval = setInterval(function(){
-    p = p + 1;
-    if(p >= 100){
-      p = 100;
-      clearInterval(interval);
-      running = false;
-      log("> SIMULATION COMPLETE");
-      log("> Report: FAKE - FOR FUN ONLY");
-      document.getElementById('p1').textContent = "HAGKEY-8812";
-      document.getElementById('p2').textContent = "SCP-81-LOCK";
-      document.getElementById('p3').textContent = "VAULT-096";
-      document.getElementById('p4').textContent = "ADMIN-2026";
-      document.getElementById('passTxt').textContent = "HACKED";
-    }
-    prog.style.width = p + "%";
-    pct.textContent = p + "%";
-    var threatBar = document.getElementById('threatBar');
-    threatBar.style.width = (10 + p*0.9) + "%";
-    if(p < 30){
-      document.getElementById('threatBig').textContent = "SAFE";
-      document.getElementById('threatTxt').textContent = "LEVEL 1 - SAFE";
-      document.getElementById('threatDesc').textContent = "الوضع مستقر...";
-    } else if(p < 60){
-      document.getElementById('threatBig').textContent = "WARNING";
-      document.getElementById('threatTxt').textContent = "LEVEL 3 - EUCLID";
-      document.getElementById('threatDesc').textContent = "تم رصد نشاط غريب...";
-    } else if(p < 90){
-      document.getElementById('threatBig').textContent = "DANGER";
-      document.getElementById('threatTxt').textContent = "LEVEL 4 - DANGER";
-      document.getElementById('threatDesc').textContent = "خرق احتواء وشيك... اخلي فورا";
-    } else {
-      document.getElementById('threatBig').textContent = "KETER";
-      document.getElementById('threatTxt').textContent = "LEVEL 5 - KETER";
-      document.getElementById('threatDesc').textContent = "خرق كامل! اهرب!";
-    }
-    var dot = document.getElementById('dot');
-    dot.style.left = (30 + p*1.2) + "px";
-    dot.style.top = (30 + Math.sin(p/10)*25 + p*0.5) + "px";
-    if(p > 50){ document.getElementById('intruderTxt').textContent = "INTRUDER: CONTAINMENT"; }
-    if(p > 85){ document.getElementById('intruderTxt').textContent = "INTRUDER: EXIT"; }
-    var c = 20 + Math.floor(Math.random()*70);
-    var m2 = 40 + Math.floor(Math.random()*50);
-    document.getElementById('cpu').textContent = c + "%";
-    document.getElementById('mem').textContent = m2 + "%";
-    document.getElementById('cpuBar').style.width = c + "%";
-    document.getElementById('memBar').style.width = m2 + "%";
-    if(p > 5){ document.getElementById('s1').classList.add('on'); }
-    if(p > 30){ document.getElementById('s2').classList.add('on'); }
-    if(p > 60){ document.getElementById('s3').classList.add('on'); }
-    if(p > 85){ document.getElementById('s4').classList.add('on'); }
-    if(p === 10){ log("> Bypassing firewall... [FAKE]"); }
-    if(p === 25){ log("> Accessing Site 81 cameras..."); }
-    if(p === 40){ log("> Analyzing system... [FAKE]"); }
-    if(p === 55){ log("> Alarm still active... EVACUATE"); }
-    if(p === 70){ log("> Opening containment doors... [FAKE]"); }
-    if(p === 85){ log("> Generating final report..."); }
-    if(p === 95){ log("> ALARM SHUTDOWN IN 5s..."); }
-  }, 220);
-});
-
-document.getElementById('resetBtn').addEventListener('click', function(){
-  clearInterval(interval);
-  clearInterval(countInterval);
-  running = false;
-  prog.style.width = "0%";
-  pct.textContent = "0%";
-  document.getElementById('countdown').textContent = "05:00";
-  document.getElementById('threatBar').style.width = "10%";
-  document.getElementById('threatBig').textContent = "SAFE";
-  document.getElementById('threatTxt').textContent = "LEVEL 1 - SAFE";
-  document.getElementById('threatDesc').textContent = "الوضع مستقر حاليا...";
-  document.getElementById('p1').textContent = "*****";
-  document.getElementById('p2').textContent = "*****";
-  document.getElementById('p3').textContent = "*****";
-  document.getElementById('p4').textContent = "*****";
-  document.getElementById('passTxt').textContent = "LOCKED";
-  document.getElementById('intruderTxt').textContent = "INTRUDER: SECTOR A";
-  document.getElementById('dot').style.left = "30px";
-  document.getElementById('dot').style.top = "30px";
-  document.getElementById('fileBox').textContent = "دوس على اي ملف عشان تشوف تقريره...";
-  term.textContent = "SCP SITE 81 SYSTEM\nInitializing simulation...\nWaiting for user command...\n_";
-  var steps = document.querySelectorAll('.step');
-  for(var j=0;j<steps.length;j++){ steps[j].classList.remove('on'); }
-  document.getElementById('target').value = "";
-});
+  // RESET
+  document.getElementById('resetBtn').onclick = function(){
+    clearInterval(interval); clearInterval(countInterval); running = false;
+    document.getElementById('prog').style.width = "0%";
+    document.getElementById('pct').textContent = "0%";
+    document.getElementById('countdown').textContent = "05:00";
+    document.getElementById('threatBar').style.width = "10%";
+    document.getElementById('threatBig').textContent = "SAFE";
+    document.getElementById('threatTxt').textContent = "LEVEL 1 - SAFE";
+    document.getElementById('p1').textContent = "*****";
+    document.getElementById('p2').textContent = "*****";
+    document.getElementById('p3').textContent = "*****";
+    document.getElementById('p4').textContent = "*****";
+    document.getElementById('passTxt').textContent = "LOCKED";
+    document.getElementById('dot').style.left = "30px";
+    document.getElementById('dot').style.top = "30px";
+    term.textContent = "SCP SITE 81 SYSTEM\nJS IS WORKING\nWaiting for START...";
+    var steps = document.querySelectorAll('.step');
+    for(var j=0;j<steps.length;j++){ steps[j].classList.remove('on'); }
+    document.getElementById('target').value = "";
+    alert("تم عمل RESET");
+  };
+};
 </script>
 </body>
 </html>
