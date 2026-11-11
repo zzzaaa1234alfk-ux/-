@@ -1,58 +1,69 @@
 
+"use strict";
+
 const $ = id => document.getElementById(id);
 
-const home = $("home");
-const experience = $("experience");
-const reveal = $("reveal");
+const screens = {
+  home: $("home"),
+  simulation: $("simulation"),
+  reveal: $("reveal")
+};
 
 let running = false;
+let paused = false;
 let progress = 0;
 let timer = null;
+let alertTimer = null;
 let audioContext = null;
+
 let soundEnabled = false;
 let vibrationEnabled = false;
-let alerted = {};
+let currentName = "GUEST";
+let commandIndex = 0;
 
 const commands = [
-  [2, "ALMOZAG V2 ENGINE INITIALIZED"],
-  [7, "Loading cinematic simulation modules..."],
-  [13, "[OK] Visual environment ready"],
-  [19, "Initializing virtual diagnostic sequence..."],
-  [25, "[OK] Simulation environment connected"],
-  [32, "Analyzing fictional system parameters..."],
-  [39, "[OK] Virtual analysis completed"],
-  [46, "[!] SIMULATED SECURITY WARNING"],
-  [52, "Generating fictional network visualization..."],
-  [59, "Processing visual system indicators..."],
-  [66, "[OK] Virtual diagnostics completed"],
-  [73, "Preparing cinematic final sequence..."],
-  [81, "[!] FINAL SIMULATION ALERT"],
-  [88, "Compiling demonstration report..."],
-  [95, "[OK] Simulation report generated"],
-  [99, "Ending fictional session..."]
+  [2, "ALMOZAG HACKER X V1 INITIALIZED", "success"],
+  [8, "Loading fictional visual modules...", ""],
+  [15, "[OK] Simulation environment ready", "success"],
+  [22, "Starting virtual diagnostic sequence...", ""],
+  [29, "[OK] Virtual environment prepared", "success"],
+  [36, "Analyzing fictional system indicators...", ""],
+  [43, "[!] SIMULATED WARNING DETECTED", "warning"],
+  [50, "Starting cinematic visual sequence...", ""],
+  [57, "[OK] Visual simulation running", "success"],
+  [65, "Preparing virtual security report...", ""],
+  [73, "[!] FINAL SIMULATION STAGE", "warning"],
+  [82, "Generating fictional report...", ""],
+  [91, "[OK] Report generation completed", "success"],
+  [98, "Closing simulation session...", ""]
 ];
 
-function showScreen(screen) {
-  document.querySelectorAll(".screen").forEach(item => {
-    item.classList.remove("active");
+function showScreen(name) {
+  Object.values(screens).forEach(screen => {
+    screen.classList.remove("active");
   });
 
-  screen.classList.add("active");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  screens[name].classList.add("active");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
-function addTerminal(text, type = "") {
+function terminalLine(message, type = "") {
   const line = document.createElement("div");
+
   line.className = "terminal-line " + type;
+  line.textContent = "> " + message;
 
-  const cursor = document.createElement("span");
-  cursor.textContent = "_";
+  $("terminal").appendChild(line);
 
-  line.textContent = text;
+  while ($("terminal").children.length > 35) {
+    $("terminal").firstElementChild.remove();
+  }
 
-  const terminal = $("terminal");
-  terminal.appendChild(line);
-  terminal.scrollTop = terminal.scrollHeight;
+  $("terminal").scrollTop = $("terminal").scrollHeight;
 }
 
 function playTone(frequency = 500, duration = 120) {
@@ -73,7 +84,8 @@ function playTone(frequency = 500, duration = 120) {
     oscillator.frequency.value = frequency;
 
     gain.gain.setValueAtTime(
-      0.04, audioContext.currentTime
+      0.035,
+      audioContext.currentTime
     );
 
     gain.gain.exponentialRampToValueAtTime(
@@ -88,15 +100,19 @@ function playTone(frequency = 500, duration = 120) {
     oscillator.stop(
       audioContext.currentTime + duration / 1000
     );
-  } catch (error) {}
+  } catch (error) {
+    console.warn("Audio unavailable");
+  }
 }
 
 function vibrate(pattern = 100) {
   if (!vibrationEnabled) return;
 
-  if ("vibrate" in navigator) {
-    navigator.vibrate(pattern);
-  }
+  try {
+    if (navigator.vibrate) {
+      navigator.vibrate(pattern);
+    }
+  } catch (error) {}
 }
 
 function showAlert(title, message) {
@@ -107,82 +123,88 @@ function showAlert(title, message) {
 
   document.body.classList.add("scare");
 
-  playTone(850, 250);
-  vibrate([150, 80, 150]);
+  playTone(800, 250);
+  vibrate([120, 70, 120]);
 
-  setTimeout(() => {
+  clearTimeout(alertTimer);
+
+  alertTimer = setTimeout(() => {
     $("alertBox").classList.add("hidden");
     document.body.classList.remove("scare");
-  }, 3000);
+  }, 2800);
 }
 
 function updatePhases() {
-  let current = 1;
-  let name = "INITIALIZATION";
+  const phases = [
+    { start: 0, name: "INITIALIZATION" },
+    { start: 25, name: "VIRTUAL ANALYSIS" },
+    { start: 50, name: "VISUAL SIMULATION" },
+    { start: 80, name: "FINAL REPORT" }
+  ];
 
-  if (progress >= 25) {
-    current = 2;
-    name = "SYSTEM ANALYSIS";
-  }
+  let current = 0;
 
-  if (progress >= 50) {
-    current = 3;
-    name = "NETWORK SIMULATION";
-  }
+  phases.forEach((phase, index) => {
+    if (progress >= phase.start) {
+      current = index;
+    }
+  });
 
-  if (progress >= 80) {
-    current = 4;
-    name = "FINAL REPORT";
-  }
-
-  $("phaseName").textContent = name;
+  $("phaseName").textContent = phases[current].name;
 
   for (let i = 1; i <= 4; i++) {
-    const item = $("phase" + i);
-    const label = item.querySelector("b");
+    const status = $("status" + i);
+    const phase = status.closest(".phase");
 
-    item.classList.remove("current", "complete");
+    phase.classList.remove("current", "complete");
 
-    if (i < current) {
-      item.classList.add("complete");
-      label.textContent = "COMPLETED";
-    } else if (i === current) {
-      item.classList.add("current");
-      label.textContent = "RUNNING";
+    if (i - 1 < current) {
+      phase.classList.add("complete");
+      status.textContent = "DONE";
+    } else if (i - 1 === current) {
+      phase.classList.add("current");
+      status.textContent = "ACTIVE";
     } else {
-      label.textContent = "WAITING";
+      status.textContent = "WAITING";
     }
   }
 }
 
 function processCommands() {
-  commands.forEach(command => {
-    const threshold = command[0];
+  while (
+    commandIndex < commands.length &&
+    progress >= commands[commandIndex][0]
+  ) {
+    const command = commands[commandIndex];
 
-    if (progress >= threshold && !command.done) {
-      addTerminal(
-        command[1],
-        command[1].includes("[!]") ? "warning" : "success"
-      );
+    terminalLine(command[1], command[2]);
 
-      command.done = true;
-
-      if (command[1].includes("[!]")) {
-        playTone(750, 180);
-      } else {
-        playTone(420, 60);
-      }
+    if (command[2] === "warning") {
+      playTone(750, 180);
+    } else {
+      playTone(420, 70);
     }
-  });
+
+    commandIndex++;
+  }
+}
+
+function updateProgress() {
+  $("percentage").textContent =
+    String(progress).padStart(2, "0") + "%";
+
+  $("progressFill").style.width = progress + "%";
+
+  updatePhases();
 }
 
 function startExperience() {
   if (running) return;
 
-  const name = $("target").value.trim();
+  currentName = $("target").value.trim();
 
-  if (!name) {
-    alert("اكتب اسماً أو لقباً للتجربة أولاً.");
+  if (!currentName) {
+    alert("اكتب اسم العرض التجريبي أولاً.");
     $("target").focus();
     return;
   }
@@ -190,61 +212,53 @@ function startExperience() {
   soundEnabled = $("soundToggle").checked;
   vibrationEnabled = $("vibrationToggle").checked;
 
-  if (soundEnabled) {
-    playTone(500, 100);
-  }
-
-  $("targetName").textContent = name;
-  $("finalName").textContent = "يا " + name + "، اتعمل فيك مقلب!";
-
   progress = 0;
-  alerted = {};
+  commandIndex = 0;
+  paused = false;
   running = true;
 
   commands.forEach(command => {
-    command.done = false;
+    commandIndex = 0;
   });
 
-  $("percentage").textContent = "00%";
-  $("progressFill").style.width = "0%";
+  $("displayName").textContent = currentName;
+  $("finalName").textContent =
+    "يا " + currentName + "، اتعمل فيك مقلب!";
 
   $("terminal").innerHTML = "";
-
-  addTerminal("ALMOZAG HACKER X V2");
-  addTerminal("Starting fictional experience...");
-
   $("alertBox").classList.add("hidden");
 
-  showScreen(experience);
+  $("pauseBtn").textContent = "Ⅱ إيقاف مؤقت";
 
-  // Try fullscreen only after the user's button press.
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen()
-      .catch(() => {});
-  }
+  updateProgress();
 
+  terminalLine("ALMOZAG HACKER X V1");
+  terminalLine("Fictional simulation started.");
+  terminalLine("No external devices or networks accessed.");
+
+  showScreen("simulation");
+
+  playTone(500, 100);
   vibrate(100);
 
   timer = setInterval(runSimulation, 450);
 }
 
 function runSimulation() {
-  if (!running) return;
+  if (!running || paused) return;
 
-  const increment = Math.floor(Math.random() * 3) + 2;
+  progress = Math.min(
+    progress + Math.floor(Math.random() * 3) + 2,
+    100
+  );
 
-  progress = Math.min(progress + increment, 100);
-
-  $("percentage").textContent =
-    String(progress).padStart(2, "0") + "%";
-
-  $("progressFill").style.width = progress + "%";
-
-  updatePhases();
+  updateProgress();
   processCommands();
 
-  if (progress >= 46 && !alerted.first) {
-    alerted.first = true;
+  if (progress >= 43 && progress < 50 &&
+      !window.firstAlertShown) {
+
+    window.firstAlertShown = true;
 
     showAlert(
       "SIMULATED WARNING",
@@ -252,12 +266,14 @@ function runSimulation() {
     );
   }
 
-  if (progress >= 81 && !alerted.second) {
-    alerted.second = true;
+  if (progress >= 73 && progress < 80 &&
+      !window.secondAlertShown) {
+
+    window.secondAlertShown = true;
 
     showAlert(
-      "FINAL ALERT",
-      "اكتملت مراحل المحاكاة تقريباً!"
+      "FINAL SIMULATION ALERT",
+      "اكتملت معظم مراحل التجربة!"
     );
   }
 
@@ -267,75 +283,128 @@ function runSimulation() {
 }
 
 function completeExperience() {
+  if (!running) return;
+
   running = false;
+  paused = false;
 
   clearInterval(timer);
   timer = null;
 
-  $("percentage").textContent = "100%";
-  $("progressFill").style.width = "100%";
+  clearTimeout(alertTimer);
 
-  addTerminal("[OK] Simulation completed.");
-  addTerminal("[INFO] No real system was accessed.");
+  $("alertBox").classList.add("hidden");
+
+  progress = 100;
+  updateProgress();
+
+  terminalLine("SIMULATION COMPLETED", "success");
+  terminalLine("No real hacking took place.", "success");
 
   playTone(650, 300);
-  vibrate([100, 80, 200]);
+  vibrate([100, 70, 180]);
 
   setTimeout(() => {
-    showScreen(reveal);
-
-    // End of the cinematic experience.
-    if (document.fullscreenElement &&
-        document.exitFullscreen) {
-      document.exitFullscreen().catch(() => {});
-    }
-  }, 1800);
+    showScreen("reveal");
+  }, 1400);
 }
 
-function resetExperience() {
+function pauseExperience() {
+  if (!running) return;
+
+  paused = !paused;
+
+  $("pauseBtn").textContent = paused
+    ? "▶ استكمال التجربة"
+    : "Ⅱ إيقاف مؤقت";
+
+  if (paused) {
+    terminalLine("Simulation paused.");
+  } else {
+    terminalLine("Simulation resumed.");
+    playTone(450, 90);
+  }
+}
+
+function stopExperience() {
   running = false;
+  paused = false;
 
   clearInterval(timer);
+  clearTimeout(alertTimer);
+
   timer = null;
 
-  progress = 0;
-  alerted = {};
+  $("alertBox").classList.add("hidden");
 
-  commands.forEach(command => {
-    command.done = false;
-  });
+  if (navigator.vibrate) {
+    navigator.vibrate(0);
+  }
+
+  terminalLine("Simulation stopped by user.");
+
+  resetToHome();
+}
+
+function resetToHome() {
+  running = false;
+  paused = false;
+  progress = 0;
+  commandIndex = 0;
+
+  clearInterval(timer);
+  clearTimeout(alertTimer);
+
+  timer = null;
+
+  window.firstAlertShown = false;
+  window.secondAlertShown = false;
 
   $("target").value = "";
   $("percentage").textContent = "00%";
   $("progressFill").style.width = "0%";
 
-  $("terminal").innerHTML = "";
+  $("pauseBtn").textContent = "Ⅱ إيقاف مؤقت";
 
   $("alertBox").classList.add("hidden");
+  document.body.classList.remove("scare");
 
   for (let i = 1; i <= 4; i++) {
-    const item = $("phase" + i);
-    item.classList.remove("current", "complete");
-    item.querySelector("b").textContent = "WAITING";
+    const status = $("status" + i);
+
+    status.textContent = "WAITING";
+    status.closest(".phase").classList.remove(
+      "current", "complete"
+    );
   }
 
-  showScreen(home);
+  showScreen("home");
 }
 
 $("startBtn").addEventListener("click", startExperience);
 
-$("againBtn").addEventListener("click", resetExperience);
+$("pauseBtn").addEventListener("click", pauseExperience);
 
-$("homeBtn").addEventListener("click", resetExperience);
+$("stopBtn").addEventListener("click", stopExperience);
 
-// Matrix visual effect
+$("againBtn").addEventListener("click", resetToHome);
+
+$("homeBtn").addEventListener("click", resetToHome);
+
+$("target").addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    startExperience();
+  }
+});
+
+// Matrix background
 const canvas = $("matrix");
 const ctx = canvas.getContext("2d");
 
-const alphabet = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%";
+const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%";
 let drops = [];
 
-function resizeCanvas() {
+function resizeMatrix() {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   canvas.width = window.innerWidth * dpr;
@@ -352,15 +421,15 @@ function resizeCanvas() {
 }
 
 function drawMatrix() {
-  ctx.fillStyle = "rgba(5,0,0,0.12)";
+  ctx.fillStyle = "rgba(5,0,0,.12)";
   ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
   ctx.font = "13px monospace";
   ctx.fillStyle = "#ff1717";
 
   drops.forEach((y, i) => {
-    const char = alphabet[
-      Math.floor(Math.random() * alphabet.length)
+    const char = chars[
+      Math.floor(Math.random() * chars.length)
     ];
 
     ctx.fillText(char, i * 17, y * 17);
@@ -376,8 +445,10 @@ function drawMatrix() {
   });
 }
 
-window.addEventListener("resize", resizeCanvas);
+window.addEventListener("resize", resizeMatrix);
 
-resizeCanvas();
+resizeMatrix();
 
 setInterval(drawMatrix, 75);
+
+console.log("ALMOZAG HACKER X V1 loaded.");
