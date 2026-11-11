@@ -3,151 +3,195 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#050000">
-<meta name="description" content="ALMOZAG HACKER X - Fictional Prank Simulation">
-<title>𝚸𝛉𝚸 𝘢ᥣḿ𝕠𝗭𝘢𝙶 𝚮𝚨Ⴚ𝚱𝛦𝛶 V𝟭</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="ALMOZAG HACKER X V1 - Fictional Cyber Prank">
+<title>ALMOZAG HACKER X V1</title>
+<link rel="stylesheet" href="./style.css?v=1">
 </head>
+
 <body>
 
-<div class="background-grid"></div>
 <canvas id="matrix"></canvas>
+<div class="scanlines"></div>
+<div class="vignette"></div>
 
-<header class="topbar">
+<header class="header">
   <div class="brand">
-    <div class="brand-logo">X</div>
+    <div class="brand-icon">X</div>
     <div>
-      <b>ALMOZAG HACKER</b>
-      <small>PRANK SIMULATOR V2</small>
+      <strong>ALMOZAG</strong>
+      <small>HACKER X / V1</small>
     </div>
   </div>
-  <div class="online"><i></i> ONLINE</div>
+  <div class="live"><i></i> SIMULATION</div>
 </header>
 
 <main>
 
 <section id="home" class="screen active">
   <div class="hero">
-    <div class="warning-label">⚠ CINEMATIC SIMULATION ⚠</div>
-    <div class="hero-symbol">X</div>
-    <h1>HACKER<span> X</span></h1>
-    <p class="subtitle">THE DARK EXPERIENCE</p>
-    <div class="red-line"></div>
-    <p class="intro">
-      أنت على وشك الدخول إلى تجربة سينمائية غامضة.
-      هل أنت مستعد؟
+    <div class="eyebrow">◈ FICTIONAL CYBER EXPERIENCE ◈</div>
+
+    <div class="hero-logo">X</div>
+
+    <div class="hero-title">HACKER <b>X</b></div>
+    <div class="hero-subtitle">THE DARK EXPERIENCE</div>
+
+    <div class="hero-divider"></div>
+
+    <p class="hero-description">
+      استعد لتجربة سينمائية تفاعلية في عالم
+      ALMOZAG المظلم.
     </p>
   </div>
 
-  <div class="setup panel">
-    <div class="section-heading">◈ إعداد التجربة</div>
-    <label for="target">اسم العرض التجريبي</label>
-    <input id="target" maxlength="25"
-      placeholder="اكتب اسماً أو لقباً">
+  <div class="start-panel">
+    <div class="panel-heading">
+      <span>01 / INITIALIZATION</span>
+      <span class="red-text">SETUP</span>
+    </div>
 
-    <div class="settings">
-      <label class="toggle">
-        <input id="soundToggle" type="checkbox">
-        <span></span>
-        <b>المؤثرات الصوتية</b>
+    <label for="target">اسم العرض التجريبي</label>
+
+    <input id="target" type="text" maxlength="24"
+      placeholder="اكتب اسمًا أو لقبًا..."
+      autocomplete="off">
+
+    <div class="options">
+      <label class="option">
+        <input type="checkbox" id="soundToggle">
+        <span class="fake-check"></span>
+        <span>المؤثرات الصوتية</span>
       </label>
-      <label class="toggle">
-        <input id="vibrationToggle" type="checkbox">
-        <span></span>
-        <b>اهتزاز الموبايل</b>
+
+      <label class="option">
+        <input type="checkbox" id="vibrationToggle">
+        <span class="fake-check"></span>
+        <span>اهتزاز الموبايل</span>
       </label>
     </div>
 
-    <button id="startBtn" class="primary-btn">
-      <span>▶</span> ابدأ التجربة
+    <button id="startBtn" class="main-button">
+      ▶ ابدأ التجربة
     </button>
-    <p class="safe-note">
-      تجربة تمثيلية للترفيه فقط — لا يوجد اختراق حقيقي.
-    </p>
+
+    <div class="disclaimer">
+      ⚠ تجربة تمثيلية للترفيه فقط. لا يوجد اختراق حقيقي.
+    </div>
+  </div>
+
+  <div class="features">
+    <div><b>01</b><span>VISUAL EFFECTS</span></div>
+    <div><b>02</b><span>LIVE ANIMATION</span></div>
+    <div><b>03</b><span>FINAL REVEAL</span></div>
   </div>
 </section>
 
-<section id="experience" class="screen">
-  <div class="mission-header">
+<section id="simulation" class="screen">
+
+  <div class="simulation-title">
     <div>
-      <small>ACTIVE SIMULATION</small>
-      <h2>OPERATION X</h2>
+      <small>ACTIVE EXPERIENCE</small>
+      <h2>OPERATION <span>X</span></h2>
     </div>
-    <div class="mission-dot">● LIVE</div>
+    <div class="live-indicator"><i></i> LIVE</div>
   </div>
 
-  <div class="target-card panel">
-    <small>SIMULATION LABEL</small>
-    <h2 id="targetName">GUEST</h2>
-    <span>VIRTUAL ENVIRONMENT</span>
+  <div class="target-panel">
+    <small>SIMULATION DISPLAY NAME</small>
+    <h2 id="displayName">GUEST</h2>
+    <div>VIRTUAL ENVIRONMENT</div>
   </div>
 
-  <div class="big-progress panel">
-    <div class="progress-top">
+  <div class="progress-panel">
+    <div class="progress-heading">
       <span id="phaseName">INITIALIZATION</span>
-      <b id="percentage">00%</b>
+      <strong id="percentage">00%</strong>
     </div>
+
     <div class="progress-track">
       <div id="progressFill"></div>
     </div>
-    <div class="phase-list">
-      <div id="phase1">01 <span>تهيئة النظام</span><b>WAITING</b></div>
-      <div id="phase2">02 <span>تحليل افتراضي</span><b>WAITING</b></div>
-      <div id="phase3">03 <span>محاكاة الشبكة</span><b>WAITING</b></div>
-      <div id="phase4">04 <span>التقرير النهائي</span><b>WAITING</b></div>
+
+    <div class="phase">
+      <span>01</span>
+      <div><b>تهيئة التجربة</b><small>INITIALIZATION</small></div>
+      <strong id="status1">WAITING</strong>
+    </div>
+
+    <div class="phase">
+      <span>02</span>
+      <div><b>تحليل افتراضي</b><small>VIRTUAL ANALYSIS</small></div>
+      <strong id="status2">WAITING</strong>
+    </div>
+
+    <div class="phase">
+      <span>03</span>
+      <div><b>محاكاة بصرية</b><small>VISUAL SIMULATION</small></div>
+      <strong id="status3">WAITING</strong>
+    </div>
+
+    <div class="phase">
+      <span>04</span>
+      <div><b>التقرير النهائي</b><small>FINAL REPORT</small></div>
+      <strong id="status4">WAITING</strong>
     </div>
   </div>
 
-  <div class="terminal-card panel">
-    <div class="terminal-head">
-      <span>● TERMINAL</span>
-      <span>SESSION ACTIVE</span>
+  <div class="terminal-panel">
+    <div class="terminal-header">
+      <span>● SYSTEM TERMINAL</span>
+      <span>ALMOZAG / V1</span>
     </div>
-    <div id="terminal" class="terminal">
-      <div class="terminal-line">ALMOZAG V2 SYSTEM</div>
-      <div class="terminal-line">Waiting for simulation...</div>
-    </div>
+    <div id="terminal" class="terminal"></div>
   </div>
 
   <div id="alertBox" class="alert-box hidden">
-    <div class="alert-icon">⚠</div>
-    <b id="alertTitle">SYSTEM ALERT</b>
-    <p id="alertMessage">SIMULATED ALERT</p>
+    <div class="alert-symbol">!</div>
+    <div>
+      <strong id="alertTitle">SIMULATION ALERT</strong>
+      <p id="alertMessage">Virtual warning</p>
+    </div>
   </div>
 
-  <p class="simulation-note">
-    جميع العمليات المعروضة افتراضية ولا تتصل بأجهزة أو شبكات خارجية.
+  <div class="simulation-controls">
+    <button id="pauseBtn" class="secondary-button">Ⅱ إيقاف مؤقت</button>
+    <button id="stopBtn" class="secondary-button stop">■ إيقاف</button>
+  </div>
+
+  <p class="simulation-disclaimer">
+    جميع العمليات المعروضة افتراضية ولا يتم فحص أي جهاز أو شبكة.
   </p>
 </section>
 
-<section id="reveal" class="screen reveal-screen">
-  <div class="glitch-title" data-text="SYSTEM ALERT">
-    SYSTEM ALERT
-  </div>
+<section id="reveal" class="screen">
 
-  <div class="skull">☠</div>
+  <div class="reveal-eyebrow">OPERATION COMPLETED</div>
 
-  <div class="final-warning">
-    <small>OPERATION RESULT</small>
-    <h1>GOTCHA!</h1>
-    <h2>😂 اتعمل فيك مقلب!</h2>
-    <p id="finalName">يا أسطورة!</p>
-  </div>
+  <div class="reveal-glitch">GOTCHA!</div>
 
-  <div class="reveal-card panel">
+  <div class="reveal-icon">☠</div>
+
+  <h1>اتعمل فيك مقلب! 😂</h1>
+  <p id="finalName" class="final-name">يا أسطورة!</p>
+
+  <div class="reveal-box">
+    <div class="reveal-stamp">THE TRUTH</div>
     <h3>🎭 الحقيقة ظهرت!</h3>
     <p>
-      كل اللي شوفته كان مؤثرات ومحاكاة تمثيلية.
+      كل اللي شوفته كان مجرد محاكاة سينمائية.
       مفيش اختراق حصل، ومفيش بيانات اتجمعت،
-      وجهازك في أمان.
+      وجهازك لم يتعرض لأي تغيير.
     </p>
+    <strong>YOU ARE SAFE.</strong>
   </div>
 
-  <button id="againBtn" class="primary-btn">
+  <button id="againBtn" class="main-button">
     ↻ جرب المقلب مرة تانية
   </button>
-  <button id="homeBtn" class="outline-btn">
+
+  <button id="homeBtn" class="secondary-button home-button">
     العودة للرئيسية
   </button>
 </section>
@@ -155,10 +199,10 @@
 </main>
 
 <footer>
-  <b>𝚸𝛉𝚸 𝘢ᥣḿ𝕠𝗭𝘢𝙶 𝚮𝚨Ⴚ𝚱𝛦𝛶 V𝟭</b>
-  <small>FICTIONAL ENTERTAINMENT EXPERIENCE</small>
+  <div class="footer-brand">ALMOZAG <span>HACKER X V1</span></div>
+  <small>FICTIONAL SIMULATION • NO REAL HACKING</small>
 </footer>
 
-<script src="script.js"></script>
+<script src="./script.js?v=1"></script>
 </body>
 </html>
