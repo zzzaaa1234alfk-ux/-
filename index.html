@@ -31,7 +31,7 @@ input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:
 .step.on{color:#ff4444;font-weight:bold}
 .footer{text-align:center;color:#ff4444;font-weight:bold;margin:20px 0 5px}
 .small{text-align:center;color:#888;font-size:12px}
-.sound{background:#2a0808;border:1px solid #661111;color:#fff;padding:12px 20px;border-radius:8px;margin:15px auto;display:block;cursor:pointer}
+.sound{background:#2a0808;border:1px solid #661111;color:#fff;padding:12px 20px;border-radius:8px;margin:15px auto;display:block;cursor:pointer;font-size:16px}
 </style>
 </head>
 <body>
@@ -40,6 +40,7 @@ input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:
 <h2>HACKER <b>X</b></h2>
 <div class="sub">ADVANCED SYSTEM SIMULATOR</div>
 <p class="desc">مرحباً بك في نظام ALMOZAG السري. استعد لتجربة محاكاة سينمائية مرعبة.</p>
+
 <div class="card">
 <div class="card-head"><span>SYSTEM MONITOR</span><span>LIVE</span></div>
 <div class="monitor">
@@ -49,6 +50,7 @@ input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:
 </div>
 <p class="small">قيم افتراضية للعرض فقط وليست قياسات حقيقية.</p>
 </div>
+
 <div class="card">
 <div class="card-head"><span>OPERATION CONTROL</span><span>01</span></div>
 <p>SIMULATION TARGET</p>
@@ -56,6 +58,7 @@ input{width:100%;background:#120000;border:1px solid #661111;color:#fff;padding:
 <button class="btn" id="startBtn">START SIMULATION ▶</button>
 <button class="btn2" id="resetBtn">RESET SYSTEM ↻</button>
 </div>
+
 <div class="card">
 <div class="card-head"><span>TERMINAL CONSOLE</span><span>READY ●</span></div>
 <div class="terminal" id="term">ALMOZAG SYSTEM [VERSION 1.0]
@@ -63,6 +66,7 @@ Initializing simulation...
 Waiting for user command...
 _</div>
 </div>
+
 <div class="card">
 <div class="card-head"><span>OPERATION PROGRESS</span><span id="pct">0%</span></div>
 <div class="progress"><i id="prog"></i></div>
@@ -71,16 +75,100 @@ _</div>
 <div class="step" id="s3">03. NETWORK SIMULATION</div>
 <div class="step" id="s4">04. FINAL REPORT</div>
 </div>
+
 <div class="footer">PӨP almөZaG HAGKEY V1</div>
 <div class="small">FICTIONAL SIMULATION • NO REAL HACKING</div>
-<button class="sound" id="soundBtn">تشغيل الصوت 🔊</button>
+<button class="sound" id="soundBtn">🔊 تشغيل صوت الاختراق - ميكس 8</button>
+
 <script>
 let running=false,interval;
 let term=document.getElementById('term'),prog=document.getElementById('prog'),pct=document.getElementById('pct');
 function log(t){term.textContent+="\n"+t;term.scrollTop=9999;}
-document.getElementById('soundBtn').onclick=function(){try{let c=new(window.AudioContext||window.webkitAudioContext)();let o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=440;o.start();g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+0.8);}catch(e){}log("> SOUND ENABLED...");};
-document.getElementById('startBtn').onclick=function(){if(running)return;let n=document.getElementById('target').value||"البوب";running=true;let p=0;term.textContent="ALMOZAG SYSTEM [VERSION 1.0]\n> Target: "+n+"\n> Starting...";log("> Connecting to "+n+"...");clearInterval(interval);interval=setInterval(function(){p+=2;if(p>=100){p=100;clearInterval(interval);running=false;log("> SIMULATION COMPLETE ✔");log("> Report: FAKE - FOR FUN ONLY");}prog.style.width=p+"%";pct.textContent=p+"%";let c=20+Math.floor(Math.random()*70),m=40+Math.floor(Math.random()*50);document.getElementById('cpu').textContent=c+"%";document.getElementById('mem').textContent=m+"%";document.getElementById('cpuBar').style.width=c+"%";document.getElementById('memBar').style.width=m+"%";if(p>10)document.getElementById('s1').classList.add('on');if(p>35)document.getElementById('s2').classList.add('on');if(p>60)document.getElementById('s3').classList.add('on');if(p>85)document.getElementById('s4').classList.add('on');if(p==20)log("> Bypassing firewall... [FAKE]");if(p==50)log("> Analyzing system... [FAKE]");if(p==80)log("> Generating final report...");},80);};
-document.getElementById('resetBtn').onclick=function(){clearInterval(interval);running=false;prog.style.width="0%";pct.textContent="0%";term.textContent="ALMOZAG SYSTEM [VERSION 1.0]\nInitializing simulation...\nWaiting for user command...\n_";document.querySelectorAll('.step').forEach(e=>e.classList.remove('on'));document.getElementById('target').value="";};
+
+// ===== صوت رقم 8 - الميكس كله =====
+let audioCtx;
+function getCtx(){
+  if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+function beep(freq, time, dur, type, vol){
+  try{
+    let ctx = getCtx();
+    let o = ctx.createOscillator();
+    let g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.type = type || 'square';
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(vol || 0.15, ctx.currentTime + time);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + time + dur);
+    o.start(ctx.currentTime + time);
+    o.stop(ctx.currentTime + time + dur);
+  }catch(e){}
+}
+function playSound8(){
+  // 1 - كيبورد سريع
+  for(let i=0;i<15;i++){ beep(800 + Math.random()*1200, i*0.08, 0.05, 'square', 0.08); }
+  // 2 - بيب بيب اجهزة
+  beep(1200, 1.2, 0.1, 'square', 0.12);
+  beep(1200, 1.4, 0.1, 'square', 0.12);
+  beep(900, 1.6, 0.15, 'square', 0.12);
+  // 3 - انذار
+  beep(300, 1.9, 0.3, 'sawtooth', 0.18);
+  beep(600, 2.2, 0.3, 'sawtooth', 0.18);
+  beep(300, 2.5, 0.3, 'sawtooth', 0.18);
+  beep(900, 2.8, 0.5, 'sawtooth', 0.22);
+  // 4 - جليتش تكسير
+  for(let i=0;i<8;i++){ beep(200 + Math.random()*800, 3.4 + i*0.07, 0.06, 'sawtooth', 0.14); }
+  // 5 - رعب واطي
+  beep(80, 4.1, 0.8, 'sine', 0.25);
+  beep(65, 4.9, 0.8, 'sine', 0.25);
+  // 6 - نجاح الاختراق
+  beep(500, 5.8, 0.15, 'square', 0.15);
+  beep(700, 5.95, 0.15, 'square', 0.15);
+  beep(1000, 6.1, 0.5, 'square', 0.22);
+  log("> SOUND 8 - FULL MIX PLAYING... [FAKE]");
+}
+
+document.getElementById('soundBtn').onclick=function(){ playSound8(); };
+
+document.getElementById('startBtn').onclick=function(){
+  playSound8();
+  if(running) return;
+  let n=document.getElementById('target').value||"البوب";
+  running=true;
+  let p=0;
+  term.textContent="ALMOZAG SYSTEM [VERSION 1.0]\n> Target: "+n+"\n> Starting simulation...";
+  log("> Connecting to "+n+"...");
+  clearInterval(interval);
+  interval=setInterval(function(){
+    p+=2;
+    if(p>=100){p=100;clearInterval(interval);running=false;log("> SIMULATION COMPLETE ✔");log("> Report: FAKE - FOR FUN ONLY"); beep(1000,0,0.5,'square',0.2); beep(1300,0.2,0.5,'square',0.2);}
+    prog.style.width=p+"%";
+    pct.textContent=p+"%";
+    let c=20+Math.floor(Math.random()*70),m=40+Math.floor(Math.random()*50);
+    document.getElementById('cpu').textContent=c+"%";
+    document.getElementById('mem').textContent=m+"%";
+    document.getElementById('cpuBar').style.width=c+"%";
+    document.getElementById('memBar').style.width=m+"%";
+    if(p>10)document.getElementById('s1').classList.add('on');
+    if(p>35)document.getElementById('s2').classList.add('on');
+    if(p>60)document.getElementById('s3').classList.add('on');
+    if(p>85)document.getElementById('s4').classList.add('on');
+    if(p==20){log("> Bypassing firewall... [FAKE]"); beep(400,0,0.2,'sawtooth',0.15);}
+    if(p==50){log("> Analyzing system... [FAKE]"); beep(500,0,0.2,'sawtooth',0.15);}
+    if(p==80){log("> Generating final report..."); beep(700,0,0.3,'square',0.15);}
+  },80);
+};
+
+document.getElementById('resetBtn').onclick=function(){
+  clearInterval(interval);running=false;
+  prog.style.width="0%";pct.textContent="0%";
+  term.textContent="ALMOZAG SYSTEM [VERSION 1.0]\nInitializing simulation...\nWaiting for user command...\n_";
+  document.querySelectorAll('.step').forEach(e=>e.classList.remove('on'));
+  document.getElementById('target').value="";
+  beep(200,0,0.3,'sawtooth',0.15); beep(150,0.3,0.4,'sawtooth',0.15);
+};
 </script>
 </body>
 </html>
