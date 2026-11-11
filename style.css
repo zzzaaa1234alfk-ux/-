@@ -1,501 +1,383 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --red: #ff1010;
-  --darkred: #790000;
-  --bg: #080000;
-  --panel: rgba(22, 5, 5, .94);
-  --border: rgba(255, 20, 20, .25);
-  --text: #f5eeee;
-  --muted: #a98b8b;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-#matrix {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  opacity: .20;
-}
-
-.scanlines {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5;
-  background: repeating-linear-gradient(
-    transparent 0px,
-    rgba(255,0,0,.025) 1px,
-    transparent 3px
-  );
-}
-
-.topbar {
-  height: 75px;
-  padding: 12px 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  background: rgba(5,0,0,.95);
-  position: relative;
-  z-index: 2;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-icon {
-  width: 43px;
-  height: 43px;
-  display: grid;
-  place-items: center;
-  border: 2px solid var(--red);
-  color: var(--red);
-  font-weight: bold;
-  font-size: 25px;
-  box-shadow: 0 0 15px #ff000055;
-}
-
-.brand strong {
-  display: block;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-.brand small {
-  display: block;
-  color: var(--muted);
-  font-size: 9px;
-  margin-top: 5px;
-}
-
-.status {
-  color: #ff4545;
-  font-size: 10px;
-}
-
-.dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: red;
-  border-radius: 50%;
-  margin-left: 5px;
-  box-shadow: 0 0 10px red;
-  animation: blink 1s infinite;
-}
-
-.container {
-  width: 92%;
-  max-width: 850px;
-  margin: 30px auto;
-  position: relative;
-  z-index: 1;
-}
-
-.hero {
-  text-align: center;
-  padding: 35px 10px;
-}
-
-.warning {
-  display: inline-block;
-  color: #ff4040;
-  border: 1px solid #9b1111;
-  padding: 8px 14px;
-  font-size: 10px;
-  letter-spacing: 1px;
-  background: #38000066;
-}
-
-.logo {
-  font-size: clamp(45px, 12vw, 85px);
-  font-weight: 900;
-  color: white;
-  text-shadow: 0 0 12px red, 0 0 35px #f00;
-  margin-top: 22px;
-}
-
-.hero h1 {
-  font-size: 38px;
-  letter-spacing: 6px;
-  margin-top: 8px;
-}
-
-.hero h1 span {
-  color: var(--red);
-  text-shadow: 0 0 15px red;
-}
-
-.subtitle {
-  font-size: 11px;
-  color: #ff5353;
-  letter-spacing: 4px;
-  margin-top: 12px;
-}
-
-.line {
-  width: 90px;
-  height: 2px;
-  background: red;
-  margin: 22px auto;
-  box-shadow: 0 0 12px red;
-}
-
-.intro {
-  font-size: 13px;
-  color: #c6aaaa;
-  line-height: 2;
-}
-
-.dashboard {
-  display: grid;
-  gap: 15px;
-}
-
-.panel {
-  border: 1px solid var(--border);
-  background: var(--panel);
-  padding: 18px;
-  border-radius: 9px;
-  box-shadow: 0 5px 25px #000;
-}
-
-.panel-title {
-  display: flex;
-  justify-content: space-between;
-  color: #ff4949;
-  font-size: 12px;
-  font-weight: bold;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 12px;
-  margin-bottom: 18px;
-}
-
-.live {
-  color: #ff5555;
-  animation: blink 1s infinite;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.stat {
-  background: #130909;
-  padding: 12px 8px;
-  border: 1px solid #501010;
-  border-radius: 6px;
-}
-
-.stat small {
-  display: block;
-  color: #a98b8b;
-  font-size: 10px;
-}
-
-.stat strong {
-  display: block;
-  color: white;
-  font-size: 19px;
-  margin: 9px 0;
-}
-
-.bar, .progress {
-  height: 5px;
-  background: #351010;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.bar i {
-  display: block;
-  height: 100%;
-  background: red;
-  width: 34%;
-  transition: width .5s;
-}
-
-.disclaimer {
-  display: block;
-  color: #927777;
-  font-size: 9px;
-  margin-top: 12px;
-}
-
-.input-group label {
-  display: block;
-  font-size: 10px;
-  color: #bba0a0;
-  margin-bottom: 9px;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 14px;
-  background: #090303;
-  border: 1px solid #681414;
-  border-radius: 5px;
-  color: white;
-  outline: none;
-  font-size: 14px;
-  margin-bottom: 15px;
-}
-
-.input-group input:focus {
-  border-color: red;
-  box-shadow: 0 0 12px #ff000044;
-}
-
-button {
-  cursor: pointer;
-  font-family: inherit;
-  border: none;
-  transition: .2s;
-}
-
-.main-btn {
-  display: block;
-  width: 100%;
-  background: linear-gradient(90deg, #8c0000, #ff1010);
-  color: white;
-  padding: 16px;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: bold;
-  box-shadow: 0 0 15px #ff000033;
-}
-
-.main-btn:hover {
-  box-shadow: 0 0 25px #ff000088;
-  transform: translateY(-2px);
-}
-
-.main-btn:disabled {
-  opacity: .5;
-  cursor: not-allowed;
-}
-
-.secondary-btn {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  padding: 13px;
-  color: #ff7777;
-  border: 1px solid #681414;
-  background: transparent;
-  border-radius: 5px;
-}
-
-.terminal {
-  background: #030303;
-  border: 1px solid #351010;
-  padding: 15px;
-  height: 210px;
-  overflow-y: auto;
-  direction: ltr;
-  text-align: left;
-  font-family: monospace;
-  font-size: 11px;
-  line-height: 2;
-}
-
-.terminal-line {
-  color: #ff5757;
-  overflow-wrap: anywhere;
-}
-
-.terminal-line.success {
-  color: #ffb2b2;
-}
-
-.terminal-line.warning {
-  color: #ff2525;
-}
-
-.cursor {
-  color: red;
-  animation: blink .7s infinite;
-}
-
-.terminal-status {
-  color: #ff3333;
-}
-
-.progress {
-  height: 10px;
-  border-radius: 3px;
-}
-
-#progressFill {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, #850000, #ff2525);
-  transition: width .3s;
-  box-shadow: 0 0 10px red;
-}
-
-#percent {
-  color: white;
-}
-
-.steps {
-  display: grid;
-  gap: 13px;
-  margin-top: 20px;
-  color: #866b6b;
-  font-family: monospace;
-  font-size: 10px;
-  direction: ltr;
-  text-align: left;
-}
-
-.steps .active {
-  color: #ff3030;
-  text-shadow: 0 0 8px red;
-}
-
-.steps .done {
-  color: #ffb0b0;
-}
-
-.result, .prank {
-  margin-top: 18px;
-  padding: 30px 18px;
-  text-align: center;
-  background: #180000;
-  border: 1px solid red;
-  border-radius: 10px;
-  box-shadow: 0 0 30px #ff000033;
-}
-
-.result-icon, .prank-symbol {
-  font-size: 55px;
-  margin-bottom: 15px;
-}
-
-.result h2, .prank h2 {
-  color: #ff3434;
-  margin-bottom: 14px;
-}
-
-.result p, .prank p {
-  color: #d6baba;
-  font-size: 13px;
-  line-height: 2;
-}
-
-.result-box {
-  background: #090202;
-  border: 1px solid #551010;
-  margin: 20px 0;
-  padding: 18px;
-  line-height: 2;
-  font-size: 12px;
-}
-
-.result-box strong {
-  color: red;
-}
-
-.prank-note {
-  margin: 12px 0 20px;
-}
-
-.hidden {
-  display: none !important;
-}
-
-footer {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  border-top: 1px solid var(--border);
-  padding: 25px 10px;
-  color: #ff5555;
-  font-size: 12px;
-}
-
-footer small {
-  display: block;
-  margin: 10px 0;
-  color: #987c7c;
-  font-size: 9px;
-}
-
-.sound-btn {
-  color: white;
-  background: #320606;
-  border: 1px solid #681414;
-  border-radius: 4px;
-  padding: 10px 15px;
-  margin-top: 8px;
-}
-
-@keyframes blink {
-  50% { opacity: .25; }
-}
-
-@media(max-width:450px) {
-  .topbar {
-    padding: 10px 3%;
-  }
-
-  .brand strong {
-    font-size: 10px;
-  }
-
-  .status {
-    font-size: 8px;
-  }
-
-  .container {
-    width: 94%;
-  }
-
-  .hero {
-    padding: 25px 5px;
-  }
-
-  .panel {
-    padding: 14px;
-  }
-
-  .stats {
-    gap: 6px;
-  }
-
-  .stat strong {
-    font-size: 15px;
+const $ = id => document.getElementById(id);
+
+const home = $("home");
+const experience = $("experience");
+const reveal = $("reveal");
+
+let running = false;
+let progress = 0;
+let timer = null;
+let audioContext = null;
+let soundEnabled = false;
+let vibrationEnabled = false;
+let alerted = {};
+
+const commands = [
+  [2, "ALMOZAG V2 ENGINE INITIALIZED"],
+  [7, "Loading cinematic simulation modules..."],
+  [13, "[OK] Visual environment ready"],
+  [19, "Initializing virtual diagnostic sequence..."],
+  [25, "[OK] Simulation environment connected"],
+  [32, "Analyzing fictional system parameters..."],
+  [39, "[OK] Virtual analysis completed"],
+  [46, "[!] SIMULATED SECURITY WARNING"],
+  [52, "Generating fictional network visualization..."],
+  [59, "Processing visual system indicators..."],
+  [66, "[OK] Virtual diagnostics completed"],
+  [73, "Preparing cinematic final sequence..."],
+  [81, "[!] FINAL SIMULATION ALERT"],
+  [88, "Compiling demonstration report..."],
+  [95, "[OK] Simulation report generated"],
+  [99, "Ending fictional session..."]
+];
+
+function showScreen(screen) {
+  document.querySelectorAll(".screen").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  screen.classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function addTerminal(text, type = "") {
+  const line = document.createElement("div");
+  line.className = "terminal-line " + type;
+
+  const cursor = document.createElement("span");
+  cursor.textContent = "_";
+
+  line.textContent = text;
+
+  const terminal = $("terminal");
+  terminal.appendChild(line);
+  terminal.scrollTop = terminal.scrollHeight;
+}
+
+function playTone(frequency = 500, duration = 120) {
+  if (!soundEnabled) return;
+
+  try {
+    audioContext = audioContext ||
+      new (window.AudioContext || window.webkitAudioContext)();
+
+    if (audioContext.state === "suspended") {
+      audioContext.resume();
+    }
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = "sawtooth";
+    oscillator.frequency.value = frequency;
+
+    gain.gain.setValueAtTime(
+      0.04, audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      audioContext.currentTime + duration / 1000
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(
+      audioContext.currentTime + duration / 1000
+    );
+  } catch (error) {}
+}
+
+function vibrate(pattern = 100) {
+  if (!vibrationEnabled) return;
+
+  if ("vibrate" in navigator) {
+    navigator.vibrate(pattern);
   }
 }
 
-@media(min-width:700px) {
-  .dashboard {
-    grid-template-columns: 1fr 1fr;
+function showAlert(title, message) {
+  $("alertTitle").textContent = title;
+  $("alertMessage").textContent = message;
+
+  $("alertBox").classList.remove("hidden");
+
+  document.body.classList.add("scare");
+
+  playTone(850, 250);
+  vibrate([150, 80, 150]);
+
+  setTimeout(() => {
+    $("alertBox").classList.add("hidden");
+    document.body.classList.remove("scare");
+  }, 3000);
+}
+
+function updatePhases() {
+  let current = 1;
+  let name = "INITIALIZATION";
+
+  if (progress >= 25) {
+    current = 2;
+    name = "SYSTEM ANALYSIS";
   }
 
-  .terminal-panel, .progress-panel {
-    grid-column: span 2;
+  if (progress >= 50) {
+    current = 3;
+    name = "NETWORK SIMULATION";
+  }
+
+  if (progress >= 80) {
+    current = 4;
+    name = "FINAL REPORT";
+  }
+
+  $("phaseName").textContent = name;
+
+  for (let i = 1; i <= 4; i++) {
+    const item = $("phase" + i);
+    const label = item.querySelector("b");
+
+    item.classList.remove("current", "complete");
+
+    if (i < current) {
+      item.classList.add("complete");
+      label.textContent = "COMPLETED";
+    } else if (i === current) {
+      item.classList.add("current");
+      label.textContent = "RUNNING";
+    } else {
+      label.textContent = "WAITING";
+    }
   }
 }
+
+function processCommands() {
+  commands.forEach(command => {
+    const threshold = command[0];
+
+    if (progress >= threshold && !command.done) {
+      addTerminal(
+        command[1],
+        command[1].includes("[!]") ? "warning" : "success"
+      );
+
+      command.done = true;
+
+      if (command[1].includes("[!]")) {
+        playTone(750, 180);
+      } else {
+        playTone(420, 60);
+      }
+    }
+  });
+}
+
+function startExperience() {
+  if (running) return;
+
+  const name = $("target").value.trim();
+
+  if (!name) {
+    alert("اكتب اسماً أو لقباً للتجربة أولاً.");
+    $("target").focus();
+    return;
+  }
+
+  soundEnabled = $("soundToggle").checked;
+  vibrationEnabled = $("vibrationToggle").checked;
+
+  if (soundEnabled) {
+    playTone(500, 100);
+  }
+
+  $("targetName").textContent = name;
+  $("finalName").textContent = "يا " + name + "، اتعمل فيك مقلب!";
+
+  progress = 0;
+  alerted = {};
+  running = true;
+
+  commands.forEach(command => {
+    command.done = false;
+  });
+
+  $("percentage").textContent = "00%";
+  $("progressFill").style.width = "0%";
+
+  $("terminal").innerHTML = "";
+
+  addTerminal("ALMOZAG HACKER X V2");
+  addTerminal("Starting fictional experience...");
+
+  $("alertBox").classList.add("hidden");
+
+  showScreen(experience);
+
+  // Try fullscreen only after the user's button press.
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen()
+      .catch(() => {});
+  }
+
+  vibrate(100);
+
+  timer = setInterval(runSimulation, 450);
+}
+
+function runSimulation() {
+  if (!running) return;
+
+  const increment = Math.floor(Math.random() * 3) + 2;
+
+  progress = Math.min(progress + increment, 100);
+
+  $("percentage").textContent =
+    String(progress).padStart(2, "0") + "%";
+
+  $("progressFill").style.width = progress + "%";
+
+  updatePhases();
+  processCommands();
+
+  if (progress >= 46 && !alerted.first) {
+    alerted.first = true;
+
+    showAlert(
+      "SIMULATED WARNING",
+      "تم الوصول إلى مرحلة التنبيه التمثيلي!"
+    );
+  }
+
+  if (progress >= 81 && !alerted.second) {
+    alerted.second = true;
+
+    showAlert(
+      "FINAL ALERT",
+      "اكتملت مراحل المحاكاة تقريباً!"
+    );
+  }
+
+  if (progress >= 100) {
+    completeExperience();
+  }
+}
+
+function completeExperience() {
+  running = false;
+
+  clearInterval(timer);
+  timer = null;
+
+  $("percentage").textContent = "100%";
+  $("progressFill").style.width = "100%";
+
+  addTerminal("[OK] Simulation completed.");
+  addTerminal("[INFO] No real system was accessed.");
+
+  playTone(650, 300);
+  vibrate([100, 80, 200]);
+
+  setTimeout(() => {
+    showScreen(reveal);
+
+    // End of the cinematic experience.
+    if (document.fullscreenElement &&
+        document.exitFullscreen) {
+      document.exitFullscreen().catch(() => {});
+    }
+  }, 1800);
+}
+
+function resetExperience() {
+  running = false;
+
+  clearInterval(timer);
+  timer = null;
+
+  progress = 0;
+  alerted = {};
+
+  commands.forEach(command => {
+    command.done = false;
+  });
+
+  $("target").value = "";
+  $("percentage").textContent = "00%";
+  $("progressFill").style.width = "0%";
+
+  $("terminal").innerHTML = "";
+
+  $("alertBox").classList.add("hidden");
+
+  for (let i = 1; i <= 4; i++) {
+    const item = $("phase" + i);
+    item.classList.remove("current", "complete");
+    item.querySelector("b").textContent = "WAITING";
+  }
+
+  showScreen(home);
+}
+
+$("startBtn").addEventListener("click", startExperience);
+
+$("againBtn").addEventListener("click", resetExperience);
+
+$("homeBtn").addEventListener("click", resetExperience);
+
+// Matrix visual effect
+const canvas = $("matrix");
+const ctx = canvas.getContext("2d");
+
+const alphabet = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%";
+let drops = [];
+
+function resizeCanvas() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  drops = Array(
+    Math.ceil(window.innerWidth / 17)
+  ).fill(1);
+}
+
+function drawMatrix() {
+  ctx.fillStyle = "rgba(5,0,0,0.12)";
+  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+  ctx.font = "13px monospace";
+  ctx.fillStyle = "#ff1717";
+
+  drops.forEach((y, i) => {
+    const char = alphabet[
+      Math.floor(Math.random() * alphabet.length)
+    ];
+
+    ctx.fillText(char, i * 17, y * 17);
+
+    if (
+      y * 17 > window.innerHeight &&
+      Math.random() > 0.975
+    ) {
+      drops[i] = 0;
+    }
+
+    drops[i]++;
+  });
+}
+
+window.addEventListener("resize", resizeCanvas);
+
+resizeCanvas();
+
+setInterval(drawMatrix, 75);
